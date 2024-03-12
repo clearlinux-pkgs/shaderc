@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source0  : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -101,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1710256332
+export SOURCE_DATE_EPOCH=1710256595
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1710256332
+export SOURCE_DATE_EPOCH=1710256595
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
@@ -198,6 +198,11 @@ rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget.cmake
 rm -f %{buildroot}*/usr/lib64/libSPIRV-Tools-shared.so
 rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools.pc
+rm -f %{buildroot}*/usr/include/spirv-tools/instrument.hpp
+rm -f %{buildroot}*/usr/include/spirv-tools/libspirv.h
+rm -f %{buildroot}*/usr/include/spirv-tools/libspirv.hpp
+rm -f %{buildroot}*/usr/include/spirv-tools/linker.hpp
+rm -f %{buildroot}*/usr/include/spirv-tools/optimizer.hpp
 
 %files
 %defattr(-,root,root,-)
@@ -213,11 +218,6 @@ rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools.pc
 /usr/include/shaderc/shaderc.hpp
 /usr/include/shaderc/status.h
 /usr/include/shaderc/visibility.h
-/usr/include/spirv-tools/instrument.hpp
-/usr/include/spirv-tools/libspirv.h
-/usr/include/spirv-tools/libspirv.hpp
-/usr/include/spirv-tools/linker.hpp
-/usr/include/spirv-tools/optimizer.hpp
 /usr/lib64/libshaderc_shared.so
 /usr/lib64/pkgconfig/shaderc.pc
 /usr/lib64/pkgconfig/shaderc_combined.pc

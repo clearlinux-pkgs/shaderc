@@ -34,3 +34,8 @@
 /usr/lib64/libSPIRV-Tools-shared.so
 /usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 /usr/lib64/pkgconfig/SPIRV-Tools.pc
+/usr/include/spirv-tools/instrument.hpp
+/usr/include/spirv-tools/libspirv.h
+/usr/include/spirv-tools/libspirv.hpp
+/usr/include/spirv-tools/linker.hpp
+/usr/include/spirv-tools/optimizer.hpp
