@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.0
-Release  : 1
+Release  : 2
 URL      : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source0  : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1710255789
+export SOURCE_DATE_EPOCH=1710256053
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -119,7 +119,9 @@ ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export GOAMD64=v2
 %cmake .. -DSHADERC_ENABLE_TESTS=FALSE \
--DSHADERC_SKIP_TESTS=ON
+-DSHADERC_SKIP_TESTS=ON \
+-DSKIP_SPIRV_TOOLS_INSTALL=ON \
+-DSKIP_GLSLANG_INSTALL=ON
 make  %{?_smp_mflags}
 popd
 
@@ -145,7 +147,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1710255789
+export SOURCE_DATE_EPOCH=1710256053
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
