@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source0  : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -19,6 +19,7 @@ License  : Apache-2.0 BSD-3-Clause-Clear MIT
 Requires: shaderc-bin = %{version}-%{release}
 Requires: shaderc-lib = %{version}-%{release}
 Requires: shaderc-license = %{version}-%{release}
+Requires: SPIRV-Tools
 BuildRequires : SPIRV-Cross
 BuildRequires : SPIRV-Headers-dev
 BuildRequires : SPIRV-Tools
@@ -100,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1710256053
+export SOURCE_DATE_EPOCH=1710256332
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -147,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1710256053
+export SOURCE_DATE_EPOCH=1710256332
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
@@ -162,6 +163,41 @@ GOAMD64=v2
 pushd clr-build
 %make_install
 popd
+## Remove excluded files
+rm -f %{buildroot}*/usr/bin/spirv-as
+rm -f %{buildroot}*/usr/bin/spirv-cfg
+rm -f %{buildroot}*/usr/bin/spirv-dis
+rm -f %{buildroot}*/usr/bin/spirv-lesspipe.sh
+rm -f %{buildroot}*/usr/bin/spirv-link
+rm -f %{buildroot}*/usr/bin/spirv-lint
+rm -f %{buildroot}*/usr/bin/spirv-objdump
+rm -f %{buildroot}*/usr/bin/spirv-opt
+rm -f %{buildroot}*/usr/bin/spirv-reduce
+rm -f %{buildroot}*/usr/bin/spirv-val
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-link/SPIRV-Tools-linkConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-link/SPIRV-Tools-linkTargets-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-link/SPIRV-Tools-linkTargets.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-lint/SPIRV-Tools-lintConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-lint/SPIRV-Tools-lintTargets-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-lint/SPIRV-Tools-lintTargets.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-opt/SPIRV-Tools-optConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-opt/SPIRV-Tools-optTargets-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-opt/SPIRV-Tools-optTargets.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-reduce/SPIRV-Tools-reduceConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-reduce/SPIRV-Tools-reduceTarget-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-reduce/SPIRV-Tools-reduceTarget.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-tools/SPIRV-Tools-toolsConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-tools/SPIRV-Tools-toolsTargets-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-tools/SPIRV-Tools-toolsTargets.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsConfig.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget-relwithdebinfo.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget.cmake
+rm -f %{buildroot}*/usr/lib64/libSPIRV-Tools-shared.so
+rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
+rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools.pc
 
 %files
 %defattr(-,root,root,-)
@@ -169,16 +205,6 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/glslc
-/usr/bin/spirv-as
-/usr/bin/spirv-cfg
-/usr/bin/spirv-dis
-/usr/bin/spirv-lesspipe.sh
-/usr/bin/spirv-link
-/usr/bin/spirv-lint
-/usr/bin/spirv-objdump
-/usr/bin/spirv-opt
-/usr/bin/spirv-reduce
-/usr/bin/spirv-val
 
 %files dev
 %defattr(-,root,root,-)
@@ -192,31 +218,7 @@ popd
 /usr/include/spirv-tools/libspirv.hpp
 /usr/include/spirv-tools/linker.hpp
 /usr/include/spirv-tools/optimizer.hpp
-/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets.cmake
-/usr/lib64/cmake/SPIRV-Tools-link/SPIRV-Tools-linkConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools-link/SPIRV-Tools-linkTargets-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools-link/SPIRV-Tools-linkTargets.cmake
-/usr/lib64/cmake/SPIRV-Tools-lint/SPIRV-Tools-lintConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools-lint/SPIRV-Tools-lintTargets-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools-lint/SPIRV-Tools-lintTargets.cmake
-/usr/lib64/cmake/SPIRV-Tools-opt/SPIRV-Tools-optConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools-opt/SPIRV-Tools-optTargets-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools-opt/SPIRV-Tools-optTargets.cmake
-/usr/lib64/cmake/SPIRV-Tools-reduce/SPIRV-Tools-reduceConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools-reduce/SPIRV-Tools-reduceTarget-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools-reduce/SPIRV-Tools-reduceTarget.cmake
-/usr/lib64/cmake/SPIRV-Tools-tools/SPIRV-Tools-toolsConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools-tools/SPIRV-Tools-toolsTargets-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools-tools/SPIRV-Tools-toolsTargets.cmake
-/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsConfig.cmake
-/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget-relwithdebinfo.cmake
-/usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget.cmake
-/usr/lib64/libSPIRV-Tools-shared.so
 /usr/lib64/libshaderc_shared.so
-/usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
-/usr/lib64/pkgconfig/SPIRV-Tools.pc
 /usr/lib64/pkgconfig/shaderc.pc
 /usr/lib64/pkgconfig/shaderc_combined.pc
 /usr/lib64/pkgconfig/shaderc_static.pc
