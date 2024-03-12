@@ -1,0 +1,12 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+googletest
+googletest-dev
+SPIRV-Tools
+SPIRV-Tools-dev
+SPIRV-Headers-dev
+SPIRV-Cross
+pypi-numpy
+mesa-dev
+glslang
+glslang-dev
