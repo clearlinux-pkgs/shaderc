@@ -31,7 +31,13 @@
 /usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsConfig.cmake
 /usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget-relwithdebinfo.cmake
 /usr/lib64/cmake/SPIRV-Tools/SPIRV-ToolsTarget.cmake
+/usr/lib64/libSPIRV-Tools-diff.a
+/usr/lib64/libSPIRV-Tools-link.a
+/usr/lib64/libSPIRV-Tools-lint.a
+/usr/lib64/libSPIRV-Tools-opt.a
+/usr/lib64/libSPIRV-Tools-reduce.a
 /usr/lib64/libSPIRV-Tools-shared.so
+/usr/lib64/libSPIRV-Tools.a
 /usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 /usr/lib64/pkgconfig/SPIRV-Tools.pc
 /usr/include/spirv-tools/instrument.hpp
