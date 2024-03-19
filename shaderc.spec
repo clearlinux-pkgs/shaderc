@@ -5,10 +5,9 @@
 # autospec version: v4
 # autospec commit: 3d985ebaf93e
 #
-%define keepstatic 1
 Name     : shaderc
 Version  : 2024.0
-Release  : 5
+Release  : 6
 URL      : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source0  : https://github.com/google/shaderc/archive/refs/tags/v2024.0.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -81,15 +80,6 @@ Group: Default
 license components for the shaderc package.
 
 
-%package staticdev
-Summary: staticdev components for the shaderc package.
-Group: Default
-Requires: shaderc-dev = %{version}-%{release}
-
-%description staticdev
-staticdev components for the shaderc package.
-
-
 %prep
 %setup -q -n shaderc-2024.0
 cd %{_builddir}
@@ -111,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1710867024
+export SOURCE_DATE_EPOCH=1710871007
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -158,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1710867024
+export SOURCE_DATE_EPOCH=1710871007
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
@@ -184,6 +174,11 @@ rm -f %{buildroot}*/usr/bin/spirv-objdump
 rm -f %{buildroot}*/usr/bin/spirv-opt
 rm -f %{buildroot}*/usr/bin/spirv-reduce
 rm -f %{buildroot}*/usr/bin/spirv-val
+rm -f %{buildroot}*/usr/include/spirv-tools/instrument.hpp
+rm -f %{buildroot}*/usr/include/spirv-tools/libspirv.h
+rm -f %{buildroot}*/usr/include/spirv-tools/libspirv.hpp
+rm -f %{buildroot}*/usr/include/spirv-tools/linker.hpp
+rm -f %{buildroot}*/usr/include/spirv-tools/optimizer.hpp
 rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffConfig.cmake
 rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets-relwithdebinfo.cmake
 rm -f %{buildroot}*/usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets.cmake
@@ -214,11 +209,8 @@ rm -f %{buildroot}*/usr/lib64/libSPIRV-Tools-shared.so
 rm -f %{buildroot}*/usr/lib64/libSPIRV-Tools.a
 rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools.pc
-rm -f %{buildroot}*/usr/include/spirv-tools/instrument.hpp
-rm -f %{buildroot}*/usr/include/spirv-tools/libspirv.h
-rm -f %{buildroot}*/usr/include/spirv-tools/libspirv.hpp
-rm -f %{buildroot}*/usr/include/spirv-tools/linker.hpp
-rm -f %{buildroot}*/usr/include/spirv-tools/optimizer.hpp
+rm -f %{buildroot}*/usr/lib64/pkgconfig/shaderc_combined.pc
+rm -f %{buildroot}*/usr/lib64/pkgconfig/shaderc_static.pc
 
 %files
 %defattr(-,root,root,-)
@@ -236,8 +228,6 @@ rm -f %{buildroot}*/usr/include/spirv-tools/optimizer.hpp
 /usr/include/shaderc/visibility.h
 /usr/lib64/libshaderc_shared.so
 /usr/lib64/pkgconfig/shaderc.pc
-/usr/lib64/pkgconfig/shaderc_combined.pc
-/usr/lib64/pkgconfig/shaderc_static.pc
 
 %files lib
 %defattr(-,root,root,-)
@@ -251,8 +241,3 @@ rm -f %{buildroot}*/usr/include/spirv-tools/optimizer.hpp
 /usr/share/package-licenses/shaderc/cdea109780799ce618a98a53a52efbae6afb8247
 /usr/share/package-licenses/shaderc/f67a567c3c0f82d745f3f273bf1cadd6b1edcad4
 /usr/share/package-licenses/shaderc/f77668fa8c7bb3dc2788af730150c401bd723fed
-
-%files staticdev
-%defattr(-,root,root,-)
-/usr/lib64/libshaderc.a
-/usr/lib64/libshaderc_combined.a

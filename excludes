@@ -10,6 +10,11 @@
 /usr/bin/spirv-opt
 /usr/bin/spirv-reduce
 /usr/bin/spirv-val
+/usr/include/spirv-tools/instrument.hpp
+/usr/include/spirv-tools/libspirv.h
+/usr/include/spirv-tools/libspirv.hpp
+/usr/include/spirv-tools/linker.hpp
+/usr/include/spirv-tools/optimizer.hpp
 /usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffConfig.cmake
 /usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/SPIRV-Tools-diff/SPIRV-Tools-diffTargets.cmake
@@ -40,8 +45,5 @@
 /usr/lib64/libSPIRV-Tools.a
 /usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 /usr/lib64/pkgconfig/SPIRV-Tools.pc
-/usr/include/spirv-tools/instrument.hpp
-/usr/include/spirv-tools/libspirv.h
-/usr/include/spirv-tools/libspirv.hpp
-/usr/include/spirv-tools/linker.hpp
-/usr/include/spirv-tools/optimizer.hpp
+/usr/lib64/pkgconfig/shaderc_combined.pc
+/usr/lib64/pkgconfig/shaderc_static.pc
