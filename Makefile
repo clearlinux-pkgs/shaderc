@@ -1,5 +1,5 @@
 PKG_NAME := shaderc
-URL = https://github.com/google/shaderc/archive/v2024.1/shaderc-2024.1.tar.gz
+URL = https://github.com/google/shaderc/archive/v2024.2/shaderc-2024.2.tar.gz
 ARCHIVES = https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-1.3.275.0/SPIRV-Tools-1.3.275.0.tar.gz third_party/spirv-tools https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz third_party/spirv-headers https://github.com/KhronosGroup/glslang/archive/14.1.0/glslang-14.1.0.tar.gz third_party/glslang
 
 include ../common/Makefile.common
