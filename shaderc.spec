@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.2
-Release  : 8
+Release  : 9
 URL      : https://github.com/google/shaderc/archive/v2024.2/shaderc-2024.2.tar.gz
 Source0  : https://github.com/google/shaderc/archive/v2024.2/shaderc-2024.2.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -101,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1726089042
+export SOURCE_DATE_EPOCH=1726090594
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1726089042
+export SOURCE_DATE_EPOCH=1726090594
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
@@ -211,6 +211,14 @@ rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 rm -f %{buildroot}*/usr/lib64/pkgconfig/SPIRV-Tools.pc
 rm -f %{buildroot}*/usr/lib64/pkgconfig/shaderc_combined.pc
 rm -f %{buildroot}*/usr/lib64/pkgconfig/shaderc_static.pc
+rm -f %{buildroot}*/usr/lib64/libSPIRV.so.14
+rm -f %{buildroot}*/usr/lib64/libSPIRV.so.14.1.0
+rm -f %{buildroot}*/usr/lib64/libSPVRemapper.so.14
+rm -f %{buildroot}*/usr/lib64/libSPVRemapper.so.14.1.0
+rm -f %{buildroot}*/usr/lib64/libglslang-default-resource-limits.so.14
+rm -f %{buildroot}*/usr/lib64/libglslang-default-resource-limits.so.14.1.0
+rm -f %{buildroot}*/usr/lib64/libglslang.so.14
+rm -f %{buildroot}*/usr/lib64/libglslang.so.14.1.0
 
 %files
 %defattr(-,root,root,-)
@@ -255,14 +263,6 @@ rm -f %{buildroot}*/usr/lib64/pkgconfig/shaderc_static.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libSPIRV.so.14
-/usr/lib64/libSPIRV.so.14.1.0
-/usr/lib64/libSPVRemapper.so.14
-/usr/lib64/libSPVRemapper.so.14.1.0
-/usr/lib64/libglslang-default-resource-limits.so.14
-/usr/lib64/libglslang-default-resource-limits.so.14.1.0
-/usr/lib64/libglslang.so.14
-/usr/lib64/libglslang.so.14.1.0
 /usr/lib64/libshaderc_shared.so.1
 
 %files license
