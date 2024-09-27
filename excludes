@@ -55,3 +55,11 @@
 /usr/lib64/libglslang-default-resource-limits.so.14.1.0
 /usr/lib64/libglslang.so.14
 /usr/lib64/libglslang.so.14.1.0
+/usr/lib64/libSPIRV.so.15
+/usr/lib64/libSPIRV.so.15.0.0
+/usr/lib64/libSPVRemapper.so.15
+/usr/lib64/libSPVRemapper.so.15.0.0
+/usr/lib64/libglslang-default-resource-limits.so.15
+/usr/lib64/libglslang-default-resource-limits.so.15.0.0
+/usr/lib64/libglslang.so.15
+/usr/lib64/libglslang.so.15.0.0
