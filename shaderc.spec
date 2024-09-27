@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.3
-Release  : 11
+Release  : 12
 URL      : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source0  : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -101,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1727422020
+export SOURCE_DATE_EPOCH=1727423097
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1727422020
+export SOURCE_DATE_EPOCH=1727423097
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
