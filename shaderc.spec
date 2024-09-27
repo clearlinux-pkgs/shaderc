@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.3
-Release  : 16
+Release  : 17
 URL      : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source0  : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -16,6 +16,7 @@ Source3  : https://github.com/KhronosGroup/glslang/archive/15.0.0/glslang-15.0.0
 Summary  : Tools and libraries for Vulkan shader compilation
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause-Clear MIT
+Requires: shaderc-bin = %{version}-%{release}
 Requires: shaderc-lib = %{version}-%{release}
 Requires: shaderc-license = %{version}-%{release}
 Requires: SPIRV-Tools
@@ -41,10 +42,20 @@ BuildRequires : python3
 A collection of tools, libraries and tests for shader compilation.
 At the moment it includes:
 
+%package bin
+Summary: bin components for the shaderc package.
+Group: Binaries
+Requires: shaderc-license = %{version}-%{release}
+
+%description bin
+bin components for the shaderc package.
+
+
 %package dev
 Summary: dev components for the shaderc package.
 Group: Development
 Requires: shaderc-lib = %{version}-%{release}
+Requires: shaderc-bin = %{version}-%{release}
 Provides: shaderc-devel = %{version}-%{release}
 Requires: shaderc = %{version}-%{release}
 
@@ -90,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1727445865
+export SOURCE_DATE_EPOCH=1727446393
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -137,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1727445865
+export SOURCE_DATE_EPOCH=1727446393
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
@@ -242,10 +253,13 @@ rm -f %{buildroot}*/usr/lib64/libSPVRemapper.so
 rm -f %{buildroot}*/usr/lib64/libglslang-default-resource-limits.so
 rm -f %{buildroot}*/usr/lib64/libglslang.so
 rm -f %{buildroot}*/usr/bin/glslangValidator
-rm -f %{buildroot}*/usr/bin/glslc
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/glslc
 
 %files dev
 %defattr(-,root,root,-)
