@@ -45,8 +45,6 @@
 /usr/lib64/libSPIRV-Tools.a
 /usr/lib64/pkgconfig/SPIRV-Tools-shared.pc
 /usr/lib64/pkgconfig/SPIRV-Tools.pc
-/usr/lib64/pkgconfig/shaderc_combined.pc
-/usr/lib64/pkgconfig/shaderc_static.pc
 /usr/lib64/libSPIRV.so.14
 /usr/lib64/libSPIRV.so.14.1.0
 /usr/lib64/libSPVRemapper.so.14
