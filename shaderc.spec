@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.3
-Release  : 15
+Release  : 16
 URL      : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source0  : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/sdk-1.3.261.0/SPIRV-Headers-1.3.261.0.tar.gz
@@ -16,7 +16,6 @@ Source3  : https://github.com/KhronosGroup/glslang/archive/15.0.0/glslang-15.0.0
 Summary  : Tools and libraries for Vulkan shader compilation
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause-Clear MIT
-Requires: shaderc-bin = %{version}-%{release}
 Requires: shaderc-lib = %{version}-%{release}
 Requires: shaderc-license = %{version}-%{release}
 Requires: SPIRV-Tools
@@ -42,20 +41,10 @@ BuildRequires : python3
 A collection of tools, libraries and tests for shader compilation.
 At the moment it includes:
 
-%package bin
-Summary: bin components for the shaderc package.
-Group: Binaries
-Requires: shaderc-license = %{version}-%{release}
-
-%description bin
-bin components for the shaderc package.
-
-
 %package dev
 Summary: dev components for the shaderc package.
 Group: Development
 Requires: shaderc-lib = %{version}-%{release}
-Requires: shaderc-bin = %{version}-%{release}
 Provides: shaderc-devel = %{version}-%{release}
 Requires: shaderc = %{version}-%{release}
 
@@ -101,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1727445190
+export SOURCE_DATE_EPOCH=1727445865
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +137,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1727445190
+export SOURCE_DATE_EPOCH=1727445865
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/shaderc
 cp %{_builddir}/SPIRV-Headers-sdk-1.3.261.0/LICENSE %{buildroot}/usr/share/package-licenses/shaderc/9a84200f47e09abfbde1a6b25028460451b23d03 || :
@@ -231,43 +220,40 @@ rm -f %{buildroot}*/usr/bin/glslang
 rm -f %{buildroot}*/usr/bin/spirv-remap
 rm -f %{buildroot}*/usr/lib64/cmake/glslang/glslang-targets-relwithdebinfo.cmake
 rm -f %{buildroot}*/usr/lib64/cmake/glslang/glslang-targets.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/glslang/glslang-config-version.cmake
+rm -f %{buildroot}*/usr/lib64/cmake/glslang/glslang-config.cmake
+rm -f %{buildroot}*/usr/include/glslang/Include/ResourceLimits.h
+rm -f %{buildroot}*/usr/include/glslang/Include/glslang_c_interface.h
+rm -f %{buildroot}*/usr/include/glslang/Include/glslang_c_shader_types.h
+rm -f %{buildroot}*/usr/include/glslang/Include/visibility.h
+rm -f %{buildroot}*/usr/include/glslang/MachineIndependent/Versions.h
+rm -f %{buildroot}*/usr/include/glslang/Public/ResourceLimits.h
+rm -f %{buildroot}*/usr/include/glslang/Public/ShaderLang.h
+rm -f %{buildroot}*/usr/include/glslang/Public/resource_limits_c.h
+rm -f %{buildroot}*/usr/include/glslang/SPIRV/GlslangToSpv.h
+rm -f %{buildroot}*/usr/include/glslang/SPIRV/Logger.h
+rm -f %{buildroot}*/usr/include/glslang/SPIRV/SPVRemapper.h
+rm -f %{buildroot}*/usr/include/glslang/SPIRV/SpvTools.h
+rm -f %{buildroot}*/usr/include/glslang/SPIRV/disassemble.h
+rm -f %{buildroot}*/usr/include/glslang/SPIRV/spirv.hpp
+rm -f %{buildroot}*/usr/include/glslang/build_info.h
+rm -f %{buildroot}*/usr/lib64/libSPIRV.so
+rm -f %{buildroot}*/usr/lib64/libSPVRemapper.so
+rm -f %{buildroot}*/usr/lib64/libglslang-default-resource-limits.so
+rm -f %{buildroot}*/usr/lib64/libglslang.so
+rm -f %{buildroot}*/usr/bin/glslangValidator
+rm -f %{buildroot}*/usr/bin/glslc
 
 %files
 %defattr(-,root,root,-)
 
-%files bin
-%defattr(-,root,root,-)
-/usr/bin/glslangValidator
-/usr/bin/glslc
-
 %files dev
 %defattr(-,root,root,-)
-/usr/include/glslang/Include/ResourceLimits.h
-/usr/include/glslang/Include/glslang_c_interface.h
-/usr/include/glslang/Include/glslang_c_shader_types.h
-/usr/include/glslang/Include/visibility.h
-/usr/include/glslang/MachineIndependent/Versions.h
-/usr/include/glslang/Public/ResourceLimits.h
-/usr/include/glslang/Public/ShaderLang.h
-/usr/include/glslang/Public/resource_limits_c.h
-/usr/include/glslang/SPIRV/GlslangToSpv.h
-/usr/include/glslang/SPIRV/Logger.h
-/usr/include/glslang/SPIRV/SPVRemapper.h
-/usr/include/glslang/SPIRV/SpvTools.h
-/usr/include/glslang/SPIRV/disassemble.h
-/usr/include/glslang/SPIRV/spirv.hpp
-/usr/include/glslang/build_info.h
 /usr/include/shaderc/env.h
 /usr/include/shaderc/shaderc.h
 /usr/include/shaderc/shaderc.hpp
 /usr/include/shaderc/status.h
 /usr/include/shaderc/visibility.h
-/usr/lib64/cmake/glslang/glslang-config-version.cmake
-/usr/lib64/cmake/glslang/glslang-config.cmake
-/usr/lib64/libSPIRV.so
-/usr/lib64/libSPVRemapper.so
-/usr/lib64/libglslang-default-resource-limits.so
-/usr/lib64/libglslang.so
 /usr/lib64/libshaderc_shared.so
 /usr/lib64/pkgconfig/shaderc.pc
 
