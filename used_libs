@@ -1,4 +1,8 @@
+libSPIRV-Tools-shared.so
 libSPIRV.so.14
+libSPVRemapper.so.14
 libc.so.6
 libgcc_s.so.1
+libglslang-default-resource-limits.so.14
+libglslang.so.14
 libstdc++.so.6
