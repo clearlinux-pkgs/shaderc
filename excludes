@@ -63,3 +63,7 @@
 /usr/lib64/libglslang-default-resource-limits.so.15.0.0
 /usr/lib64/libglslang.so.15
 /usr/lib64/libglslang.so.15.0.0
+/usr/bin/glslang
+/usr/bin/spirv-remap
+/usr/lib64/cmake/glslang/glslang-targets-relwithdebinfo.cmake
+/usr/lib64/cmake/glslang/glslang-targets.cmake
