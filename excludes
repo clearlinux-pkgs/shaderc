@@ -86,5 +86,8 @@
 /usr/lib64/libSPVRemapper.so
 /usr/lib64/libglslang-default-resource-limits.so
 /usr/lib64/libglslang.so
-
 /usr/bin/glslangValidator
+
+
+/usr/lib64/pkgconfig/shaderc_combined.pc
+/usr/lib64/pkgconfig/shaderc_static.pc
