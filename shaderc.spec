@@ -7,7 +7,7 @@
 #
 Name     : shaderc
 Version  : 2024.3
-Release  : 20
+Release  : 21
 URL      : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source0  : https://github.com/google/shaderc/archive/v2024.3/shaderc-2024.3.tar.gz
 Source1  : https://github.com/KhronosGroup/SPIRV-Headers/archive/vulkan-sdk-1.3.290.0/SPIRV-Headers-1.3.290.0.tar.gz
